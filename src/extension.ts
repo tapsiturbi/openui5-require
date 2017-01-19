@@ -63,7 +63,7 @@ class UI5Requirer {
         let currentDoc = doc.getText();
         let edit = new vscode.WorkspaceEdit();
         let reRequire = /sap\.ui\.define\s*\(\s*\[([^\]]*)\]\s*,\s*function\s*\(([^\)]*)\)([^\n]+)/m;
-        let reToAdd = new RegExp("((new\\s*)?['\"\{]?" + aLibraries.map((str) => str.replace(/\./g, "\\.") ).join("[\\w\.]+['\"\}]?|(new\\s*)?['\"\{]?") + "[\\w\.]+['\"\}]?)", "g");
+        let reToAdd = new RegExp("((new|instanceof)?\\s+['\"\{]?" + aLibraries.map((str) => str.replace(/\./g, "\\.") ).join("[\\w\.]+['\"\}]?|(new|instanceof)?\\s+['\"\{]?") + "[\\w\.]+['\"\}]?)", "g");
 
         let match = reRequire.exec(currentDoc);
         let toAddMatch = currentDoc.match(reToAdd);
@@ -97,7 +97,8 @@ class UI5Requirer {
             // check if we need to include extra chars after the class name (eg. sap.ui.core. => sap.ui.core.mvc but must be sap.ui.core.mvc.JSView);
             // note that we need to consider that the class' static function is called,
             // so we need to check if it's being instantiated as a class ('new Class()')
-            let matchIsNewClass = sToAddClass.match(/^new\s*/);
+            // or used as parameter to instanceof
+            let matchIsNewClass = sToAddClass.match(/^new\s*|instanceof\s*/);
             if ( matchIsNewClass ) {
                 sToAddClass = sToAddClass.replace(matchIsNewClass[0], "");
 
@@ -142,7 +143,7 @@ class UI5Requirer {
                 edit.replace(
                     doc.uri,
                     new vscode.Range(posDefine.line, posDefine.character, posDefine.line + numNewLines, lastLineLen),
-                    "sap.ui.define([\n    \"" + aClassDef.join("\",\n    \"") + "\"\n], function(" + aFunctionDef.join(", ") + ")" + sSuffix
+                    "sap.ui.define([\n    \"" + aClassDef.join("\", \"") + "\"\n], function( " + aFunctionDef.join(", ") + " )" + sSuffix
                 );
 
                 console.log("rebuilding sap.ui.define");

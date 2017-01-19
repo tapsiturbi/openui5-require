@@ -61,12 +61,13 @@ class UI5Requirer {
 
         let doc = editor.document;
         let currentDoc = doc.getText();
+        let currentDocNoCmts = currentDoc.replace(/\/\*[\s\S]*?\*\/|([^\\:]|^)\/\/.*$/gm, '$1'); // @source: http://upshots.org/javascript/javascript-regexp-to-remove-comments
         let edit = new vscode.WorkspaceEdit();
         let reRequire = /sap\.ui\.define\s*\(\s*\[([^\]]*)\]\s*,\s*function\s*\(([^\)]*)\)([^\n]+)/m;
         let reToAdd = new RegExp("((new|instanceof)?\\s+['\"\{]?" + aLibraries.map((str) => str.replace(/\./g, "\\.") ).join("[\\w\.]+['\"\}]?|(new|instanceof)?\\s+['\"\{]?") + "[\\w\.]+['\"\}]?)", "g");
 
         let match = reRequire.exec(currentDoc);
-        let toAddMatch = currentDoc.match(reToAdd);
+        let toAddMatch = currentDocNoCmts.match(reToAdd);
         let aToAdd = [];
         if ( !match ) {
             vscode.window.showErrorMessage("There is no sap.ui.define([], function(){}) declaration on the current file. ");

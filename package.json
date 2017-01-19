@@ -2,7 +2,7 @@
     "name": "openui5-require",
     "displayName": "OpenUI5 require",
     "description": "Automatically adds sap.ui.require code",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "publisher": "tapsiturbi-publisher",
     "engines": {
         "vscode": "^1.8.0"
@@ -28,12 +28,22 @@
             "properties": {
                 "ui5requirer.libraries": {
                     "type": "array",
-                    "default": ["sap.m.", "sap.ui.unified.", "sap.ui.core", "sap.ui.layout.", "sap.ui.model."],
+                    "default": [
+                        "sap.m.",
+                        "sap.ui.unified.",
+                        "sap.ui.core",
+                        "sap.ui.layout.",
+                        "sap.ui.model."
+                    ],
                     "description": "The OpenUI5/SAP UI5 libraries to parse the current file for. Must end with a dot (.)"
                 },
                 "ui5requirer.excluded": {
                     "type": "array",
-                    "default": ["sap.ui.define", "sap.ui.getCore", "sap.ui.jsfragment"],
+                    "default": [
+                        "sap.ui.define",
+                        "sap.ui.getCore",
+                        "sap.ui.jsfragment"
+                    ],
                     "description": "List of classes to exclude when parsing the code"
                 }
             }

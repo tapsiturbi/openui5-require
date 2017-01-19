@@ -3,7 +3,7 @@
     "displayName": "OpenUI5 require",
     "description": "Automatically adds sap.ui.require code",
     "version": "0.0.1",
-    "publisher": "ac",
+    "publisher": "tapsiturbi-publisher",
     "engines": {
         "vscode": "^1.8.0"
     },
@@ -39,6 +39,7 @@
             }
         }
     },
+    "homepage": "https://github.com/tapsiturbi/openui5-require",
     "scripts": {
         "vscode:prepublish": "tsc -p ./",
         "compile": "tsc -watch -p ./",

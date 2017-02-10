@@ -33,7 +33,8 @@
                         "sap.ui.unified.",
                         "sap.ui.core",
                         "sap.ui.layout.",
-                        "sap.ui.model."
+                        "sap.ui.model.",
+                        "spinifex."
                     ],
                     "description": "The OpenUI5/SAP UI5 libraries to parse the current file for. Must end with a dot (.)"
                 },
@@ -42,7 +43,8 @@
                     "default": [
                         "sap.ui.define",
                         "sap.ui.getCore",
-                        "sap.ui.jsfragment"
+                        "sap.ui.jsfragment",
+                        "spinifex.strato.view.Conditions"
                     ],
                     "description": "List of classes to exclude when parsing the code"
                 }

@@ -114,6 +114,9 @@ class UI5Requirer {
                 // if a call to a static function, then the class name is the 2nd to the last
                 // word between dots (IconPool in "sap.ui.core.IconPool.getIconURI()" )
                 sToAddClass = sToAddClass.replace(/(.*\.\w+)\.\w+$/, "$1");
+
+                if ( aExcluded.indexOf(sToAddClass) != -1 )
+                    continue;
             }
 
             sToAddClass = sToAddClass.replace(/\./g, "/");

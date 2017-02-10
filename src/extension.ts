@@ -203,6 +203,11 @@ class UI5Requirer {
 
                 vscode.window.showErrorMessage("Updating file failed: " + reason);
             });
+        } else {
+
+            console.log("No match found");
+            vscode.window.showInformationMessage("No match found");
+
         }
 
 

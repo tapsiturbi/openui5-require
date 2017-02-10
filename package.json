@@ -2,7 +2,7 @@
     "name": "openui5-require",
     "displayName": "OpenUI5 require",
     "description": "Automatically adds sap.ui.require code",
-    "version": "0.1.1",
+    "version": "0.2.0",
     "publisher": "tapsiturbi-publisher",
     "engines": {
         "vscode": "^1.8.0"

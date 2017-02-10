@@ -112,7 +112,7 @@ This is still a WIP so please let me know if you encounter any issues.
 
 Initial release
 
-### 0.1.2
+### 0.2
 
 Minor bug fix when using exclude parameter.
 
